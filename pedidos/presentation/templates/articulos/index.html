@@ -1,0 +1,31 @@
+{% extends 'layout/main.html' %}
+
+{% block title %} Inventario {% endblock %}
+
+{% block body %}
+<div id="app" class="container-fluid">
+  <h1>Inventario</h1>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Código</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <articulo-component
+          v-for="articulo in articulos"
+          :key="articulo.id"
+          :articulo="articulo"
+          @editar="editarArticulo"
+          @eliminar="eliminarArticulo"
+        ></articulo-component>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
