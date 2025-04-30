@@ -8,10 +8,7 @@ from pedidos import db
 
 @app.route("/articulos", methods=["GET"])
 def articulos_index():
-    articulos_repository = ArticulosAdapter(db)
-    articulosService = ArticulosService(articulos_repository)
-    articulos = articulosService.find_all("")
-    return render_template("articulos/index.html", articulos=articulos)
+    return render_template("articulos/index.html")
 
 @app.route("/articulos/edit/<id>", methods=["GET", "POST"])
 def articulos_edit(id):

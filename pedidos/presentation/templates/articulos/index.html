@@ -1,31 +1,62 @@
 {% extends 'layout/main.html' %}
 
-{% block title %} Inventario {% endblock %}
+{% block title %}Inventario{% endblock %}
 
 {% block body %}
-<div id="app" class="container-fluid">
-  <h1>Inventario</h1>
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Código</th>
-          <th>Nombre</th>
-          <th>Precio</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <articulo-component
-          v-for="articulo in articulos"
-          :key="articulo.id"
-          :articulo="articulo"
-          @editar="editarArticulo"
-          @eliminar="eliminarArticulo"
-        ></articulo-component>
-      </tbody>
-    </table>
+<div id="app">
+  <div class="container">
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1>Inventario</h1>
+      <a href="{{ url_for('articulos_create') }}" class="button" data-text="Nuevo">
+        <span class="actual-text">&nbsp;Nuevo&nbsp;</span>
+        <span aria-hidden="true" class="hover-text">&nbsp;Nuevo&nbsp;</span>
+      </a>
+    </div>
+
+    <!-- Contenido dinámico con Vue -->
+    <div>
+      <!-- Mensaje de error si existe -->
+      <div v-if="error" class="alert alert-danger" role="alert">
+        \{{ error }}
+      </div>
+
+      <!-- Indicador de carga -->
+      <div v-if="cargando" class="text-center py-4">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+
+      <!-- Tabla de artículos -->
+      <div v-else-if="articulos.length > 0" class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Código</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <articulo-component
+              v-for="articulo in articulos"
+              :key="articulo.id"
+              :articulo="articulo"
+              @editar="editarArticulo"
+              @eliminar="eliminarArticulo"
+            ></articulo-component>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mensaje si no hay artículos -->
+      <div v-else class="alert alert-info">
+        No hay artículos disponibles
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

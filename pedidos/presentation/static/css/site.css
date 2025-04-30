@@ -128,55 +128,55 @@
   border-top: none;
 }
 
-/* Estilo para la tabla */
+/* Ajustes para la tabla y su contenedor */
+.table-responsive {
+  margin: 20px auto;
+  border-radius: 10px;
+  overflow-x: auto; /* Permitir scroll horizontal si es necesario */
+  max-width: 100%; /* Usar todo el ancho disponible */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para la tabla */
 .table {
-  border-collapse: separate;
-  border-spacing: 0;
   width: 100%;
+  margin-bottom: 0;
   background-color: #ffffff;
   border: 1px solid #dee2e6;
-  border-radius: 10px;
+  border-radius: 8px;
+  border-collapse: separate;
+  border-spacing: 0;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin: 20px auto; /* Centrar la tabla y dar espacio */
-  table-layout: fixed;
+  table-layout: fixed; /* Forzar ancho fijo de columnas */
 }
 
 /* Estilos para las celdas y encabezados */
 .table th,
 .table td {
-  padding: 8px 12px; /* Reducir el padding */
+  padding: 8px; /* Reducir el padding */
   text-align: left;
   border-bottom: 1px solid #dee2e6;
+  vertical-align: middle;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  vertical-align: middle;
   font-size: 0.9em; /* Reducir tamaño de fuente */
-}
-
-/* Estilos para los encabezados */
-.table thead th {
-  background-color: #879bb0;
-  color: white;
-  font-weight: 600;
-  padding: 12px 8px; /* Ajustar padding */
 }
 
 /* Ajustar el ancho específico de cada columna */
 .table th:nth-child(1), 
 .table td:nth-child(1) { /* Columna ID */
-  width: 5%;
+  width: 8%;
 }
 
 .table th:nth-child(2),
 .table td:nth-child(2) { /* Columna Código */
-  width: 15%;
+  width: 17%;
 }
 
 .table th:nth-child(3),
 .table td:nth-child(3) { /* Columna Nombre */
-  width: 40%;
+  width: 35%;
 }
 
 .table th:nth-child(4),
@@ -187,40 +187,91 @@
 .table th:nth-child(5),
 .table td:nth-child(5) { /* Columna Acciones */
   width: 25%;
-  text-align: center;
 }
 
-/* Ajuste para los botones en la tabla */
-.table td .button {
-  font-size: 0.75em; /* Reducir más el tamaño de la fuente de los botones */
-  margin: 0 3px; /* Reducir el espacio entre botones */
-  padding: 3px 8px; /* Reducir el padding de los botones */
+/* Estilo para los botones en la tabla */
+.table .button {
+  --fs-size: 0.8em; /* Reducir tamaño de fuente de los botones */
+  margin: 0 3px;
+  padding: 3px 8px;
 }
 
-/* Ajustes para el contenedor de la tabla */
+/* Contenedor de la tabla */
 .table-responsive {
   margin: 20px auto;
   border-radius: 10px;
-  overflow-x: auto; /* Permitir scroll horizontal si es necesario */
-  max-width: 95%; /* Dar un poco de margen a los lados */
+  overflow-x: auto;
+  width: 95%; /* Ajustar el ancho del contenedor */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Ajuste para el contenedor de botones */
-.d-flex.justify-content-center.gap-2 {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem !important;
+/* Ajuste para el contenedor principal */
+#app {
+  padding: 20px;
+  max-width: 1200px; /* Limitar el ancho máximo */
+  margin: 0 auto;
 }
 
-/* Estilos para mejorar la legibilidad */
+/* Estilo para el título */
+#app h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Agregar estos estilos al final del archivo */
+
+.table {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.table th {
+  background-color: #879bb0;
+  color: white;
+  font-weight: 500;
+  padding: 12px;
+  text-align: left;
+}
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #dee2e6;
+  vertical-align: middle;
+}
+
 .table tbody tr:hover {
   background-color: #f8f9fa;
 }
 
-/* Ajuste para el texto dentro de las celdas */
-.table td {
-  max-width: 0; /* Forzar text-overflow */
+.table-responsive {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Ajustar tamaños de columnas */
+.table th:nth-child(1), 
+.table td:nth-child(1) { width: 8%; }
+
+.table th:nth-child(2),
+.table td:nth-child(2) { width: 17%; }
+
+.table th:nth-child(3),
+.table td:nth-child(3) { width: 40%; }
+
+.table th:nth-child(4),
+.table td:nth-child(4) { width: 15%; }
+
+.table th:nth-child(5),
+.table td:nth-child(5) { width: 20%; }

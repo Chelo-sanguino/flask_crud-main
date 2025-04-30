@@ -4,20 +4,25 @@ from pedidos.application.articulo_service import ArticulosService
 from pedidos.domain.articulo import Articulo
 from pedidos import db
 
-articulos_api = Blueprint("articulos_api", __name__, url_prefix="/api/articulos")
+# Modificar la definición del Blueprint
+articulos_api = Blueprint("articulos_api", __name__)
 
 @articulos_api.route("/", methods=["GET"])
 def get_all_articulos():
-    articulos_repository = ArticulosAdapter(db)
-    articulos_service = ArticulosService(articulos_repository)
-    filtro = request.args.get("filtro", "")
-    articulos = articulos_service.find_all(filtro)
-    return jsonify([{
-        "id": articulo.id(),        
-        "codigo": articulo.codigo(),
-        "nombre": articulo.nombre(),
-        "precio": articulo.precio()
-    } for articulo in articulos])
+    try:
+        articulos_repository = ArticulosAdapter(db)
+        articulos_service = ArticulosService(articulos_repository)
+        filtro = request.args.get("filtro", "")
+        articulos = articulos_service.find_all(filtro)
+        return jsonify([{
+            "id": articulo.id(),        
+            "codigo": articulo.codigo(),
+            "nombre": articulo.nombre(),
+            "precio": articulo.precio()
+        } for articulo in articulos])
+    except Exception as e:
+        print(f"Error en get_all_articulos: {str(e)}")
+        return jsonify({"error": str(e)}), 500
 
 @articulos_api.route("/<int:id>", methods=["GET"])
 def get_articulo_by_id(id):
